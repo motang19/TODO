@@ -1,0 +1,59 @@
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+
+
+body {
+    /* Margin bottom by footer height */
+    margin-bottom: 2em;
+    margin-top: 2em;
+}
+
+
+hr {
+    width: 100%;
+    margin: auto;
+}
+.table th {
+    text-align: center;
+    vertical-align:middle;
+}
+
+.table td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.table tr {
+    text-align: center;
+    vertical-align: middle;
+}
+
+/* bootstrap modifications */
+.container {
+    width: auto;
+    max-width: 680px;
+    padding: 0 15px;
+}
+
+.extra-bottom {
+    padding-bottom: 2em;
+}
+
+.task {
+    width: 50%;
+}
+
+.task-id {
+    width: 10%;
+}
+
+.status {
+    width: 20%;
+}
+
+.update {
+    width: 10%;
+}
