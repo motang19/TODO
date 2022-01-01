@@ -1,0 +1,17 @@
+runtime: python38
+
+instance class: F1
+
+env_variables:
+  MYSQL_USER: 'root'
+  MYSQL_PASSWORD: <NARUTOrasengan2!>
+  MYSQL_DB: 'todo'
+  MYSQL_HOST: <127.0.0.1>
+
+handlers:
+
+- url: /script
+  static_dir: static/script
+
+- url: /styles
+  static_dir: static/styles
