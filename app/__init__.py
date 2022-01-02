@@ -5,7 +5,7 @@ from flask import Flask
 
 def init_connect_engine():
     if os.environ.get('GAE_ENV') != 'standard':
-        variables = load(open("app.yaml"), Loader = Loader)
+        variables = load(open("/Users/samanthanicotang/Desktop/TODO/app/app.yaml"), Loader = Loader)
         env_variables = variables['env_variables']
         for var in env_variables:
             os.environ[var] = env_variables[var]
@@ -23,5 +23,6 @@ def init_connect_engine():
 
 app = Flask(__name__)
 db = init_connect_engine()
+
 
 from app import routes

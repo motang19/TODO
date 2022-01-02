@@ -5,7 +5,7 @@ from app import database as db_helper
 @app.route("/delete/<int:task_id>", methods=['POST'])
 def delete(task_id):
     try:
-        # db_helper.remove_task_by_id(task_id)
+        db_helper.remove_task_by_id(task_id)
         result = {'success': True, 'response': 'Removed task'}
     except:
         result = {'success': False, 'response': 'Something went wrong'}
@@ -18,10 +18,10 @@ def update(task_id):
     print(data)
     try:
         if "status" in data:
-            # db_helper.update_status_entry(task_id, data["status"])
+            db_helper.update_status_entry(task_id, data["status"])
             result = {'success': True, 'response': 'Status Updated'}
         elif "description" in data:
-            # db_helper.update_task_entry(task_id, data["description"])
+            db_helper.update_task_entry(task_id, data["description"])
             result = {'success': True, 'response': 'Task Updated'}
         else:
             result = {'success': True, 'response': 'Nothing Updated'}
@@ -33,12 +33,18 @@ def update(task_id):
 @app.route("/create", methods=['POST'])
 def create():
     data = request.get_json()
-    # db_helper.insert_new_task(data['description'])
+    db_helper.insert_new_task(data['description'])
+    result = {'success': True, 'response': 'Done'}
+    return jsonify(result)
+
+@app.route("/clear", methods=['POST'])
+def clear():
+    db_helper.clear()
     result = {'success': True, 'response': 'Done'}
     return jsonify(result)
 
 @app.route("/")
 def homepage():
     """ returns rendered homepage """
-    items = db_helper.todo_items()
+    items = db_helper.fetch_todo()
     return render_template("index.html", items=items)

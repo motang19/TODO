@@ -23,7 +23,13 @@
       <p><mark>Do it now.</mark></p>
     </main>
     
-
+    <div class="container">    
+        
+        
+        <div style="text-align: right;">
+        <button type="button" class="btn btn-outline-danger btn-sm clear" >clear</button>
+        </div>
+    </div>
     
 
  
@@ -58,15 +64,36 @@
                         {%endif%}
                             <td>
                                 <button type="button" class="btn btn-outline-info btn-sm" data-bs-toggle="modal"
-                                data-bs-target="#task-modal" data-source="{{item.id}}"
+                                data-bs-target="#edit-modal" data-source="{{item.id}}"
                                     data-content="{{item.task}}"><i class="fa fa-pen fa-1" aria-hidden="true"></i>
                                 </button>
+                                <div class="modal fade" id="edit-modal" tabindex="-1" aria-labelledby="Label" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="Label">Add a task</h5>
+                                        </div>
+                            
+                                        <div class="modal-body">
+                                            <div class="input-group mb-3">
+                                                <input type="text" class="form-control" placeholder="Task"
+                                                                                aria-label="task-name" aria-describedby="basic-addon1">
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                                            <button id="edit-task" type="button" class="btn btn-success">Save changes</button>
+                                        </div>
+                                        </div>
+                                    </div>
+                                    </div>
                             </td>
 
                             <td><button class="btn btn-outline-secondary btn-sm remove" data-source="{{item.id}}"
                                     type="button"><i class="fa fa-trash fa-1" aria-hidden="true"></i>
                                 </button>
                             </td>
+                           
                     </tr>
                 {% endfor %}  
             </tbody>

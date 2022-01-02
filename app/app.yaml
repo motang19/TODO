@@ -4,9 +4,9 @@ instance class: F1
 
 env_variables:
   MYSQL_USER: 'root'
-  MYSQL_PASSWORD: <NARUTOrasengan2!>
+  MYSQL_PASSWORD: 'NARUTOrasengan2!'
   MYSQL_DB: 'todo'
-  MYSQL_HOST: <127.0.0.1>
+  MYSQL_HOST: 127.0.0.1
 
 handlers:
 
