@@ -5,8 +5,13 @@ $(document).ready(function () {
         let content = button.data('content'); // Extract info from data-* attributes
 
        let modal = $(this);
-            modal.find('.modal-title').text(taskID);
-            $('#task-form-display').removeAttr('taskID');
+       if (taskID === 'New Task') {
+        modal.find('.modal-title').text(taskID);
+        $('#task-form-display').removeAttr('taskID');
+    } else {
+        modal.find('.modal-title').text('Edit Task ' + taskID);
+        $('#task-form-display').attr('taskID', taskID);
+    }
         if (content) {
             modal.find('.form-control').val(content);
         } else {
@@ -14,48 +19,14 @@ $(document).ready(function () {
         }
     })
 
-    $('#edit-modal').on('show.bs.modal', function (event) {
-        let button = $(event.relatedTarget); // Button that triggered the modal
-        let taskID = button.data('source'); // Extract info from data-* attributes
-        let content = button.data('content'); // Extract info from data-* attributes
-
-       let modal = $(this);
-            modal.find('.modal-title').text('Edit Task ' + taskID);
-            $('#task-form-display').attr('taskID', taskID);
-
-        if (content) {
-            modal.find('.form-control').val(content);
-        } else {
-            modal.find('.form-control').val('');
-        }
-    })
-
-
-    $('#edit-task').click(function () {
-        let tID = $('#task-form-display').attr('taskID');
-        console.log($('#edit-modal').find('.form-control').val());
-        $.ajax({
-            type: 'POST',
-            url: '/edit/'+tID,
-            contentType: 'application/json;charset=UTF-8',
-            data: JSON.stringify({
-                'description': $('#edit-modal').find('.form-control').val()
-            }),
-            success: function (res) {
-                console.log(res.response)
-                location.reload();
-            },
-            error: function () {
-                console.log('Error');
-            }
-        });
-    });
+    
 
     $('#submit-task').click(function () {
+        let tID = $('#task-form-display').attr('taskID');
         console.log($('#task-modal').find('.form-control').val());
         $.ajax({
             type: 'POST',
-            url: '/create',
+            url: tID ? '/edit/' + tID : '/create',
             contentType: 'application/json;charset=UTF-8',
             data: JSON.stringify({
                 'description': $('#task-modal').find('.form-control').val()
